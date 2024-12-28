@@ -1,15 +1,16 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Cavok Cloud",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/version3.png",
+    "light": "/logo/version3.png"
   },
+  "theme": "prism",
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#635BFF",
+    "light": "#908CFF",
+    "dark": "#635BFF",
     "anchors": {
       "from": "#0D9373",
       "to": "#07C983"
@@ -17,13 +18,13 @@
   },
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "name": "Discord Support",
+      "url": "https://discord.gg/hRzryzg3cz"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://cavok.dev/admin/dashboard"
   },
   "tabs": [
     {
@@ -33,19 +34,14 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "Cavok",
+      "icon": "house",
+      "url": "https://cavok.dev"
     },
     {
       "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "icon": "discord",
+      "url": "https://discord.gg/hRzryzg3cz"
     }
   ],
   "navigation": [
@@ -69,6 +65,15 @@
       ]
     },
     {
+      "group": "Legal",
+      "pages": [
+        "terms/terms",
+        "terms/privacy",
+        "terms/refunds",
+        "terms/exclusion"
+      ]
+    },
+    {
       "group": "API Documentation",
       "pages": [
         "api-reference/introduction"
@@ -84,8 +89,7 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "github": "https://github.com/Cavok-Cloud/docs",
+    "discord": "https://discord.gg/hRzryzg3cz"
   }
 }
