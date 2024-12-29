@@ -20,12 +20,12 @@ With AWS, there's two ways to give us permissions: allowing one IAM User of our 
 or by creating an IAM User at your side, creating token credentials for it and passing it down to us ("Access Credentials").
 
 <AccordionGroup>
-  <Accordion icon="user-shield" title="Assume Role" defaultOpen={true}>
+  <Accordion icon="user-shield" title="Assume Role">
     This is the **recommended way** to give us permission, as it is a AWS Well-Architecture practice.
 
     Our internal IAM User integrates with AWS by assuming an IAM Role on your end, and getting temporary credentials.
   </Accordion>
-  <Accordion icon="key" title="Access Credentials" defaultOpen={true}>
+  <Accordion icon="key" title="Access Credentials">
     This is the "old" way of connecting directly to an AWS Account.
 
     You create an IAM User on you end, create a Security Credential with an
@@ -36,30 +36,50 @@ or by creating an IAM User at your side, creating token credentials for it and p
   </Accordion>
 </AccordionGroup>
 
-### AWS Assume Role
+### Option 1: AWS Assume Role
 
 After you add the basic information about your Cloud Account, it will be shown at the Account list as this:
 
     ![Account Item](/images/new-account-item.png)
 
-    <img height="200" noZoom src="/images/deploy-stack.png" />
+The question mark (?) shows we haven't confirmed this Account yet.
+
+Click on its next step: "Instructions".
 
 <AccordionGroup>
 
-<Accordion icon="message-bot" title="Install our Github app">
-  Our Github app automatically deploys your changes to your docs site, so you
-  don't need to manage deployments yourself. You can find the link to install on
-  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
-  successfully installed, there should be a check mark next to the commit hash
-  of the repo.
+<Accordion icon="clipboard-list-check" title="Install instructions">
+  We have an easy AWS CloudFormation Stack Deploy button, ready for you to use.
+
+  <img noZoom src="/images/deploy-stack.png" />
+
+  It will open a CloudFormation page within your logged in AWS Account. This stack creates an IAM Role with our
+  necessary permissions, and you won't have to pass on any other credential.
 </Accordion>
-<Accordion icon="rocket" title="Push your changes">
-  [Commit and push your changes to
-  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
-  for your changes to update in your docs site. If you push and don't see that
-  the Github app successfully deployed your changes, you can also manually
-  update your docs through our [dashboard](https://dashboard.mintlify.com).
+<Accordion icon="vial" title="Test your access">
+  This button will open a modal and make a sucession of tests to your Account.
+
+  In case it succeeds, your Account will be confirmed and you can create Resources for it. In case of failure,
+  check the modal logs for details on where to investigate. Contact Support if needed.
 </Accordion>
+
+</AccordionGroup>
+
+### Option 2: AWS Access Key & Secret
+
+If you enter your credentials with the option "AWS Access Key" when creating a new Account,
+we will use those to connect with it.
+
+You will have to create the IAM User on your own. Check our [Access Details Page](access-details) for required permissions.
+Then click on the "Test" icon to check everything is in place.
+
+<AccordionGroup>
+  <Accordion icon="vial" title="Test your access">
+    This button will open a modal and make a sucession of tests to your Account.
+
+    In case it succeeds, your Account will be confirmed and you can create Resources for it. In case of failure,
+    check the modal logs for details on where to investigate. Contact Support if needed.
+  </Accordion>
 
 </AccordionGroup>
 
