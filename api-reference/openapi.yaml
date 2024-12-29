@@ -1,0 +1,179 @@
+openapi: 3.0.3
+info:
+  title: Cavok Cloud - OpenAPI 3.0
+  description: |-
+    This is the OpenAPI 3.0 documentation for Cavok Cloud API.
+  termsOfService: https://docs.cavok.dev/terms
+  contact:
+    name: Discord Support
+    url: https://discord.gg/hRzryzg3cz
+  version: 1.1.0
+externalDocs:
+  description: Documentation
+  url: https://docs.cavok.dev
+servers:
+  - url: https://resource.cavok.dev/api/v1
+tags:
+  - name: Open Endpoints
+    description: These do not ask for authorization token
+  - name: Auth
+    description: How to authenticate with the API
+  - name: Account
+    description: Operations about Accounts (Cloud ID account)
+paths:
+  /status:
+    get:
+      tags:
+        - Open Endpoints
+      summary: Smoke test for API availability
+      description: Simple endpoint to check for API health
+      operationId: getStatus
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/StandardResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Status'
+        '500':
+          description: API is down
+  /oauth/token:
+    post:
+      tags:
+        - Auth
+      summary: OAuth2 Client Credentials
+      description: Using an API Key created in our Dashboard, exchange it for a JWT access token
+      operationId: getToken
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/StandardResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Token'
+        '404':
+          description: API Key invalid
+
+  /account/{id}:
+    get:
+      tags:
+        - Account
+      summary: Find connected Account by ID
+      description: Multiple status values can be provided with comma separated strings
+      operationId: getAccountById
+      parameters:
+        - name: id
+          in: path
+          description: Account ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/StandardResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Account'
+        '400':
+          description: Invalid ID
+      security:
+        - ApiAuth:
+            - read
+components:
+  schemas:
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          nullable: false
+        data:
+          type: object
+          nullable: true
+        message:
+          type: string
+          default: null
+          nullable: true
+    Status:
+      type: object
+      properties:
+        status:
+          type: string
+          default: ok
+        server:
+          type: string
+          description: Server environment
+          example: prod
+    Token:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: number
+          example: 14400
+          description: Expiration time in seconds
+    Account:
+      type: object
+      properties:
+        orgId:
+          type: string
+          example: 67320e335aa8b99012c888ff
+        id:
+          type: string
+          example: 771x2QdN-XQu-xXnN8wVx
+        name:
+          type: string
+          example: "Staging Workloads"
+        createdAt:
+          type: number
+          example: 1733094757000
+        provider:
+          type: string
+          example: AWS
+        providerId:
+          type: string
+          example: 996399990199
+        confirmed:
+          type: boolean
+          example: true
+        type:
+          type: string
+          enum:
+            - accessKey
+            - assumeRole
+          example: assumeRole
+        logs:
+          type: boolean
+          example: true
+
+  securitySchemes:
+    ApiAuth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://resource.cavok.dev/api/v1/oauth/token
+          scopes:
+            read: Grants read access
+            write: Grants write access

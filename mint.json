@@ -26,17 +26,17 @@
     "name": "Dashboard",
     "url": "https://cavok.dev/admin/dashboard"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
   "anchors": [
     {
       "name": "Cavok",
       "icon": "house",
       "url": "https://cavok.dev"
+    },
+    {
+      "name": "API Reference",
+      "url": "api-reference",
+      "openapi": "/api-reference/openapi.yaml",
+      "icon": "api"
     },
     {
       "name": "Community",
