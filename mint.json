@@ -26,17 +26,17 @@
     "name": "Dashboard",
     "url": "https://cavok.dev/admin/dashboard"
   },
+  "tabs": [
+    {
+      "name": "API Reference",
+      "url": "api-reference"
+    }
+  ],
   "anchors": [
     {
       "name": "Cavok",
       "icon": "house",
       "url": "https://cavok.dev"
-    },
-    {
-      "name": "API Reference",
-      "url": "api-reference",
-      "openapi": "/api-reference/openapi.yaml",
-      "icon": "api"
     },
     {
       "name": "Community",
@@ -49,7 +49,7 @@
       "group": "Get Started",
       "pages": [
         "introduction",
-        "quickstart",
+        "connecting",
         "development"
       ]
     },
@@ -76,15 +76,17 @@
     {
       "group": "API Documentation",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/introduction",
+        "api-reference/authentication",
+        "api-reference/standards"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Endpoints",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/open-endpoints/smoke-test-for-api-availability",
+        "api-reference/auth/oauth2-client-credentials",
+        "api-reference/account/find-by-cloud-id"
       ]
     }
   ],

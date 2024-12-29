@@ -1,0 +1,20 @@
+---
+title: 'Standards'
+description: 'Guide on general usage of our API requests'
+---
+
+##
+
+## Responses
+
+Every endpoint has a default response object containing metadata about it, in the following scheme:
+
+```json
+{
+  "success": boolean,
+  "message": "string", // only used when success: false
+  "data": any
+}
+```
+
+Property `data` will be the actual information, being either a scalar, object or array.

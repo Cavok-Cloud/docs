@@ -1,0 +1,25 @@
+---
+title: 'Authentication'
+description: 'Guide on how to authenticate against our API'
+---
+
+## Token Exchange
+
+Our API uses a well-known OAuth 2 Client Credentials workflow.
+
+With your `clientId` and `keyId` information from the [API Keys page](https://www.cavok.dev/admin/api),
+you make a request to our `oauth/token` endpoint and exchange your credentials for a Json Web Token (JWT) which gives actual access to the API.
+
+<Card
+  title="OpenAPI 3.0 file"
+  icon="plug"
+  href="https://github.com/Cavok-Cloud/docs/blob/main/api-reference/openapi.yaml"
+>
+  View the OpenAPI spec file from our GitHub Documentation repository.
+</Card>
+
+## Authorizing Requests
+
+The given JWToken will be put as a `Header: Authorization` following the "Bearer" mechanism:
+
+> Header: Authorization: `Bearer {access_token}`.
