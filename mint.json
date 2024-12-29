@@ -67,10 +67,10 @@
     {
       "group": "Legal",
       "pages": [
-        "terms/terms",
-        "terms/privacy",
-        "terms/refunds",
-        "terms/exclusion"
+        "legal/terms",
+        "legal/privacy",
+        "legal/refunds",
+        "legal/exclusion"
       ]
     },
     {
