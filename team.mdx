@@ -1,0 +1,84 @@
+---
+title: 'Managing Team & Users'
+sidebarTitle: "Team"
+description: 'Guide on how to add Users to your Organization'
+---
+
+## Cloud Accounts Page
+
+At our Admin sidebard, the first menu entry is [Cloud Accounts](https://cavok.dev/admin/cloud-access),
+in which a list of currently connected Cloud Accounts have been added to your Organization.
+
+There's no limit on connected Accounts: we want you to have your entire cloud infrastructure under a single Organization.
+Each new added Account has its own free tier usage.
+
+### AWS Permissions
+
+The most important part is how to enable Cavok Cloud to access your Cloud Account, securely.
+
+With AWS, there's two ways to give us permissions: allowing one IAM User of our own to assume an IAM Role on your account ("Assume Role"),
+or by creating an IAM User at your side, creating token credentials for it and passing it down to us ("Access Credentials").
+
+<AccordionGroup>
+  <Accordion icon="user-shield" title="Assume Role" defaultOpen={true}>
+    This is the **recommended way** to give us permission, as it is a AWS Well-Architecture practice.
+
+    Our internal IAM User integrates with AWS by assuming an IAM Role on your end, and getting temporary credentials.
+  </Accordion>
+  <Accordion icon="key" title="Access Credentials" defaultOpen={true}>
+    This is the "old" way of connecting directly to an AWS Account.
+
+    You create an IAM User on you end, create a Security Credential with an
+
+    `AWS Access Key ID` & `AWS Secret Access Key`
+
+    and trust those keys with us.
+  </Accordion>
+</AccordionGroup>
+
+### AWS Assume Role
+
+After you add the basic information about your Cloud Account, it will be shown at the Account list as this:
+
+    ![Account Item](/images/new-account-item.png)
+
+    <img height="200" noZoom src="/images/deploy-stack.png" />
+
+<AccordionGroup>
+
+<Accordion icon="message-bot" title="Install our Github app">
+  Our Github app automatically deploys your changes to your docs site, so you
+  don't need to manage deployments yourself. You can find the link to install on
+  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
+  successfully installed, there should be a check mark next to the commit hash
+  of the repo.
+</Accordion>
+<Accordion icon="rocket" title="Push your changes">
+  [Commit and push your changes to
+  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
+  for your changes to update in your docs site. If you push and don't see that
+  the Github app successfully deployed your changes, you can also manually
+  update your docs through our [dashboard](https://dashboard.mintlify.com).
+</Accordion>
+
+</AccordionGroup>
+
+## Use our Tools
+
+After an Account is properly connected, you can add our Resources to better control your instances usage.
+
+<CardGroup>
+
+<Card title="Schedulers" icon="calendar-days" href="/resources/scheduler">
+  Add Schedulers to turn off your instances & services.
+</Card>
+
+<Card
+  title="Adjusters"
+  icon="square-sliders-vertical"
+  href="/resources/adjuster"
+>
+  Use Adjusters to resize instances at desired times.
+</Card>
+
+</CardGroup>

@@ -30,6 +30,10 @@
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Terraform",
+      "url": "terraform"
     }
   ],
   "anchors": [
@@ -49,19 +53,8 @@
       "group": "Get Started",
       "pages": [
         "introduction",
-        "connecting",
-        "development"
-      ]
-    },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "setup",
+        "team"
       ]
     },
     {
@@ -87,6 +80,12 @@
         "api-reference/open-endpoints/smoke-test-for-api-availability",
         "api-reference/auth/oauth2-client-credentials",
         "api-reference/account/find-by-cloud-id"
+      ]
+    },
+    {
+      "group": "TF Documentation",
+      "pages": [
+        "terraform/introduction"
       ]
     }
   ],
