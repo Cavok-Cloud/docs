@@ -10,12 +10,44 @@ mode: "wide"
 
 Every endpoint has a default response object containing metadata about it, in the following scheme:
 
-```json
+```
 {
   "success": boolean,
-  "message": "string", // only used when success: false
+  "message": "string", // ommitted, except when success: false
   "data": any
 }
 ```
 
-Property `data` will be the actual information, being either a scalar, object or array.
+<Note>Property `data` will be the actual information, being either a scalar, object or array.</Note>
+
+## Status Codes
+
+Cavok API uses HTTP Status Codes in responses with their semantic intention.
+
+- 200: Success
+  - Success requests
+  - We don't use 201-2XX
+- 400: Bad Request
+  - Bad input, user request error
+- 401: Unauthorized
+  - Token check failed
+- 403: Forbidden
+  - Request doesn't have the level of Authorization it needs to complete
+  - When dealing with Cloud Providers, it may mean the IAM User or Role we rely on doesn't have required permissions
+- 404: Not Found
+  - Resource wasn't found, mostly used by `Get By Id` endpoints
+- 409: Conflict
+  - Operation seems well-formed but can't be completed due to conflicts within our database
+  - Usually means information violates uniqueness, like a Resource name
+- 422: Unprocessable Entity
+  - Operation seems well-formed but can't be completed due to conflicts within our database
+  - Usually means a deeper conflict or restriction, like geo-availability, might be preventing us from processing
+- 500: Internal Server Error
+  - An unexpected exception happend at our servers
+- 501: Not Implemented
+  - The request asked for an action or operation that hasn't been implemented by our services
+- 502: Bad Gateway
+  - Means we are experiencing temporary downtime
+- 503: Service Unavailable
+  - Means one or more provider we rely on (AWS, Azure, Crisp, Stripe) is currently affecting our capabilities
+

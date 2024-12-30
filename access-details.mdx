@@ -1,24 +1,140 @@
 ---
 title: 'Access Details'
 description: 'Guide on how we leverage IAM Permissions'
-mode: 'wide'
 ---
 
-## Necessary Permissions
+Be it either an IAM Role or IAM User at your end, Cavok Cloud asks for those permissions on your behalf:
 
-We have a free server at Discord at https://discord.gg/hRzryzg3cz. Our Support Team is there, and responds to customers when available.
+```json
+{
+  "PolicyDocument": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "Statements1",
+        "Effect": "Allow",
+        "Action": [
+          "sts:AssumeRole",
+          "iam:ListRolePolicies",
+          "iam:ListAttachedRolePolicies",
+          "iam:GetRolePolicy",
+          "ec2:DescribeInstanceStatus",
+          "ec2:DescribeInstances",
+          "ec2:StartInstances",
+          "ec2:StopInstances",
+          "rds:DescribeDBClusters",
+          "rds:DescribeDBInstances",
+          "rds:StartDBCluster",
+          "rds:StartDBInstance",
+          "rds:StopDBCluster",
+          "rds:StopDBInstance"
+        ],
+        "Resource": "*"
+      },
+      {
+        "Sid": "Statements2",
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:PutRetentionPolicy",
+          "logs:TagResource"
+        ],
+        "Resource": "arn:aws:logs:*:*:log-group:/cavok/*"
+      }
+    ]
+  }
+}
+```
 
-This is a free, always available level of support. It is not bound by a SLA.
+Explanation of each subset of Permissions follows.
 
-## CRM (Crisp) Support
+## Required Permissions for Role
 
-We have a CRM with a chat widget available at our website. Our Support Teams listen to these at business hours.
-If no person is available at the time you message us, it will be picked up by the first available operator when they come online.
+<Tip>Skip this section if you're using "Access Key" connection type for your Account</Tip>
 
-This is also a free support level, not bound by a SLA.
+If you're using "Assume Role" connection type, then `sts:AssumeRole` **is mandatory**.
 
-### Email Support
+The IAM Role on your end will also need the following **Trust Relationship Policy**,
+allowing one of our workload IAM Users to assume this role:
 
-Customers with a subscription from us can contact us at support at cavok dot dev. We usually respond within 1 (one) business day.
+<Tip>If you used our "Deploy on AWS" button at Account creation, that would have been done for you.</Tip>
 
-This is the **only** support channel with a duty to answer customers ASAP and maintain SLA, as detailed in our [Terms of Service](/legal/terms).
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Statements3",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123115356005:root"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "StringEquals": {
+          "sts:ExternalId": "CavokOrganizationId"
+        }
+      }
+    }
+  ]
+}
+```
+
+<Note>`Principal > AWS > ARN` is a reference to our Workload AWS Account,
+  and `CavokOrganizationId` is a reference to your Organization number with us.</Note>
+
+<Info>`sts:ExternalId` is an AWS Best-Practice that enforces us to confirm a mutually known information
+  (but not a secret) in order to request temporary credentials at every SDK interaction.</Info>
+
+## Checking Permissions
+
+These permissions are only needed by our Account confirmation routine,
+to check if we can be sure our Resources won't fail from lack of permissions:
+
+- "iam:ListRolePolicies"
+- "iam:ListAttachedRolePolicies"
+- "iam:GetRolePolicy"
+
+They are not used after an Account is marked as "Confirmed".
+
+## Log Writing Permissions
+
+If you allow us to register execution logs in your Account (at the Account Creation modal), we need those permissions:
+
+- "logs:CreateLogGroup"
+- "logs:CreateLogStream"
+- "logs:PutLogEvents"
+- "logs:PutRetentionPolicy"
+- "logs:TagResource"
+
+Cavok LogGroups are created with a default of 14 days retention. That can be changed afterwards on your end.
+
+<Note>We use a restriction: we only want to write on Cavok LogGroups:<br />`"Resource": "arn:aws:logs:*:*:log-group:/cavok/*"`</Note>
+
+## Operational Permissions
+
+These can be removed if you don't intend to use some of those Resources in your Account.
+
+### EC2
+
+We need these permissions:
+
+- "ec2:DescribeInstanceStatus"
+- "ec2:DescribeInstances"
+- "ec2:StartInstances"
+- "ec2:StopInstances"
+
+### RDS
+
+We need these permissions:
+
+- "rds:DescribeDBClusters"
+- "rds:DescribeDBInstances"
+- "rds:StartDBCluster"
+- "rds:StartDBInstance"
+- "rds:StopDBCluster"
+- "rds:StopDBInstance"
+
+<Note>Aurora databases are "clusters" and need those permissions</Note>

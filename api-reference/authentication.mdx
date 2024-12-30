@@ -1,6 +1,7 @@
 ---
 title: 'Authentication'
 description: 'Guide on how to authenticate against our API'
+mode: 'wide'
 ---
 
 ## Token Exchange
@@ -23,3 +24,5 @@ you make a request to our `oauth/token` endpoint and exchange your credentials f
 The given JWToken has to be put as a `Header: Authorization` following the "Bearer" mechanism:
 
 > Header: Authorization: `Bearer {access_token}`.
+
+<Warning>Any endpoint request that fail Authorization will be answered with a `401: Unauthorized` status code.</Warning>

@@ -12,6 +12,25 @@ in which a list of currently connected Cloud Accounts have been added to your Or
 There's no limit on connected Accounts: we want you to have your entire cloud infrastructure under a single Organization.
 Each new added Account has its own free tier usage.
 
+### Basic Information
+
+The New Account Modal will ask the following:
+
+- Provider
+  - AWS
+  - Azure (coming soon)
+- Provider ID
+  - AWS: This is the 12 digit account number
+- Name
+  - Any name you want to give to this Account (alphanumeric only)
+- Access Type
+  - Check the next session for detailed instructions on permissions
+- Write logs
+  - "Yes" if you want us to write logs to your Cloud Account (AWS CloudWatch Logs) at every interaction with your instances.
+    "No" if you would rather not (you'll only have information about what's happening from our Dashboard).
+
+<Note>Cavok logs will have the suffix `/cavok/` for CloudWatch</Note>
+
 ### AWS Permissions
 
 The most important part is how to enable Cavok Cloud to access your Cloud Account, securely.
@@ -40,7 +59,7 @@ or by creating an IAM User at your side, creating token credentials for it and p
 
 After you add the basic information about your Cloud Account, it will be shown at the Account list as this:
 
-    ![Account Item](/images/new-account-item.png)
+![Account Item](/images/new-account-item.png)
 
 The question mark (?) shows we haven't confirmed this Account yet.
 
@@ -51,7 +70,9 @@ Click on its next step: "Instructions".
 <Accordion icon="clipboard-list-check" title="Install instructions">
   We have an easy AWS CloudFormation Stack Deploy button, ready for you to use.
 
-  <img noZoom src="/images/deploy-stack.png" />
+  <Frame>
+    <img noZoom src="/images/deploy-stack.png" alt='Deploy on AWS' />
+  </Frame>
 
   It will open a CloudFormation page within your logged in AWS Account. This stack creates an IAM Role with our
   necessary permissions, and you won't have to pass on any other credential.
@@ -82,6 +103,16 @@ Then click on the "Test" icon to check everything is in place.
   </Accordion>
 
 </AccordionGroup>
+
+## Test your Connection
+
+After you set up IAM on your side, click on the <Icon icon="vial" iconType="regular" /> "Test" icon to confirm our access.
+
+<Note>Not every permission is required, even log permissions. Testing logs will show you information about what happened at every step.</Note>
+
+## Detailed Permissions
+
+If you want to fine-tune our permissions or understand better what we use and how, check out our [Access Details Page](access-details).
 
 ## Use our Tools
 
