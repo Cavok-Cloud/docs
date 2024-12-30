@@ -6,6 +6,9 @@
     "light": "/logo/version3.png"
   },
   "theme": "prism",
+  "feedback": {
+    "thumbsRating": true
+  },
   "favicon": "/favicon.svg",
   "colors": {
     "primary": "#635BFF",

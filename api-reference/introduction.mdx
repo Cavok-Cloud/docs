@@ -8,8 +8,18 @@ mode: "wide"
 
 In order to use our API, you will need an API Key from our [Control Panel](https://www.cavok.dev/admin/api).
 
-Keep in mind that API access is only available at one of our [paid plans](https://cavok.dev/#pricing).
+You give it a name, and we'll generate a **Secret Key** for you.
 
-API requests are limited by throttling, to avoid excessive usage from one set of keys.
+<Warning>Keep in mind that API access is only available at one of our [paid plans](https://cavok.dev/#pricing).</Warning>
 
 All endpoints are described at the sidebar. You should learn how to Authenticate next.
+
+## Recommendations
+
+We encourage you use one different API Key for any subsystem you have that might need to interact with Cavok.
+
+That way, any unforeseen usage can be revoked and limited to that subsystem.
+
+<Warning>Beware that an API Key have access to most Control Panel features regarding to Resources.<br />**They must be treated as a Secret**.</Warning>
+
+<Warning>API requests are limited by throttling, to avoid excessive usage from one set of keys.</Warning>
