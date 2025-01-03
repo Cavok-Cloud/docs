@@ -1,0 +1,42 @@
+---
+title: 'Time Triggers'
+description: 'Information on how to rely on our timers & cron schedules'
+---
+
+## Execution Time
+
+Any one of our Resources will have a time to **start** and to **end**. These are affected by two things:
+
+- _Timezone_, decided at Resource creation
+- _Tolerance_, in time, for the action to be taken
+
+**Tolerance** is what our current cloud systems use to distribute our workload, **in minutes**;
+so a Scheduler set to start at 00:00 usually does at 00:01 ~ 00:04.
+
+<Info>This is known as the ["Thundering Herd"](https://en.wikipedia.org/wiki/Thundering_herd_problem) problem,
+  and it is a consideration for every Cloud provider (AWS, Azure, GCP, ...)</Info>
+
+<Warning>
+  Also note, there's (currently) **no SLA guaranteeing execution**.
+
+  Our service is very reliable, but we don't recommend using Schedulers with no designed tolerance for mission-critical systems.
+</Warning>
+
+These tolerance not only help with ensuring **the action will take place eventually**, but often Cloud providers need _a lot of time_ to start,
+stop or modify their instances anyway. Usually, snapshots are taken and stored, database backups take place, diff logs are transfered between replicas.
+Until changes are actually in effect, resources are usually charged at their previous levels.
+
+One of the reasons we recommend turning Account Logging on is for you to be able to check on them and see their day to day timings.
+It will be registered when the action took place and when their status was actually confirmed to have changed.
+
+## Editing
+
+Schedules & Adjusters are create-only; if you need to change a planned schedule, delete the Resource and create them again.
+
+## Planned Features
+
+Regarding execution, we currently are working in two features. They are:
+
+- _Precise timing_: we'll strive to start execution at the planned time, within seconds.
+- _Alerts_: in case of a long error about starting or stopping a Resource, with significant cost involved,
+we'll send alerts to you over other channels.
