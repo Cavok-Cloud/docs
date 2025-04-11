@@ -55,12 +55,24 @@
     {
       "group": "Get Started",
       "pages": [
-        "introduction",
-        "setup",
-        "team",
-        "support",
-        "access-details",
-        "time-triggers"
+        "get-started/introduction",
+        "get-started/setup",
+        "get-started/team"
+      ]
+    },
+    {
+      "group": "Resources",
+      "pages": [
+        "resources/common",
+        "resources/scheduler"
+      ]
+    },
+    {
+      "group": "Advanced",
+      "pages": [
+        "advanced/support",
+        "advanced/access-details",
+        "advanced/time-triggers"
       ]
     },
     {

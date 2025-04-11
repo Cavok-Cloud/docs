@@ -1,0 +1,35 @@
+---
+title: Common Features
+sidebarTitle: "Common"
+description: 'Shared by all Resources'
+---
+
+## About Resources
+
+We call a "Resource" any of our actual features that interact with your Cloud resources.
+
+We currently have two: **Schedulers** and **Adjusters**.
+
+They can be created at our Control Panel, or by API request and Terraform (with our paid plans).
+
+## Usage Count
+
+Every Resource in you plan counts against a quota. The **Free Limit** gives you 3 Schedulers and 1 Adjuster, **per Cloud Account**.
+
+If you use AWS Organizations or Azure Tenants, each will have its Account ID, and the free quota is for each one, independently.
+
+<Note>Suspended Resources still count against the quota. **Delete** a Resource to decrease your count usage.</Note>
+
+Our Paid Plans will give you an extended quota, and **those are counted for your _entire Organization_**, regardless of how many Cloud Accounts you have.
+
+<Tip>Even with our Paid Plans, your paid quota only starts to count **after** free limit usage.</Tip>
+
+## Savings Estimates
+
+Every Resource will try to keep track of how much they are saving you in cloud costs. It will extrapolate its known downtime, daily, against its previously known service tier usage (like instance size).
+
+<Note>We use standard service-hours, on-demand pricing options for the Region your cloud resource resides.</Note>
+
+<Warning>Knowing your exact cost for a service isn't feasible for us, as many factors could be in place for you, including more than reserved usage, like savings plans, credits, or partner discounts.</Warning>
+
+<Warning>Estimates are a **best-effort** feature, and there are no SLA covering its accuracy. Use it as a measure for our service value proposition, and always check your current cloud Cost Explorer.</Warning>

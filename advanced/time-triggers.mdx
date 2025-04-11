@@ -19,14 +19,14 @@ so a Scheduler set to start at 00:00 usually does at 00:01 ~ 00:04.
 <Warning>
   Also note, there's (currently) **no SLA guaranteeing execution**.
 
-  Our service is very reliable, but we don't recommend using Schedulers with no designed tolerance for mission-critical systems.
+  Our service is very reliable, but we don't recommend using Schedulers with no allowed tolerance for mission-critical systems.
 </Warning>
 
-These tolerance not only help with ensuring **the action will take place eventually**, but often Cloud providers need _a lot of time_ to start,
+These tolerance not only help with ensuring **the action will definetely take place**, but often Cloud providers need _a lot of time_ to start,
 stop or modify their instances anyway. Usually, snapshots are taken and stored, database backups take place, diff logs are transfered between replicas.
 Until changes are actually in effect, resources are usually charged at their previous levels.
 
-One of the reasons we recommend turning Account Logging on is for you to be able to check on them and see their day to day timings.
+One of the reasons we recommend **turning on Account Logging** is for you to be able to check on them and see their day to day timings.
 It will be registered when the action took place and when their status was actually confirmed to have changed.
 
 ## Editing
@@ -39,4 +39,4 @@ Regarding execution, we currently are working in two features. They are:
 
 - _Precise timing_: we'll strive to start execution at the planned time, within seconds.
 - _Alerts_: in case of a long error about starting or stopping a Resource, with significant cost involved,
-we'll send alerts to you over other channels.
+we'll send alerts to you over selected channels.
