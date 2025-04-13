@@ -1,0 +1,67 @@
+---
+title: 'Security Practices'
+description: 'Our compliance standards'
+---
+
+<Info>
+  We (Cavok Cloud) take data security seriously and align our practices with industry standards such as SOC 2 Type I.
+  While we are not formally certified at this time, we have implemented controls based on SOC 2's Security principles.
+</Info>
+
+## Access Controls
+
+- All our systems require authentication with strong, rotating credentials.
+  - These are followed by internal user and subsystems.
+- Role-based access control (RBAC) is in place to limit user permissions.
+- Administrative access is reviewed quarterly and updated as needed.
+  - Customers Administrator accounts are disabled after 3 months of inactivity, excluding root account.
+- Two-factor authentication (2FA) is enforced for privileged accounts.
+
+## Audit Logging
+
+- We export detailed logs of key user actions (logins, permission changes, data edits/deletes).
+- One Cloud Account must be set as designed Audit Trail storage
+- Audit logs storage & permissions are responsabilities of our Customer.
+
+<Tip>Audit logging is a feature of our Expert Plan</Tip>
+
+## Encryption
+
+- All data is encrypted in transit using TLS 1.2+.
+- Data at rest is encrypted using AES-256 via our cloud provider (AWS & Azure).
+- We do not store sensitive payment or personal information directly on our systems - these are handled by Stripe.
+
+## Incident Response
+
+- We maintain an incident response plan to quickly investigate and remediate security issues.
+- In case of a breach, affected users will be notified within 72 hours.
+
+[//]: # (- We conduct mock incident response drills to stay prepared.)
+
+## Third-Party Risk Management
+
+- We use trusted infrastructure and service providers who maintain their own SOC 2, ISO 27001, or similar certifications.
+- All vendors are reviewed for security and compliance as part of onboarding.
+
+## Change Management
+
+- All code changes are reviewed and tested before deployment.
+- We track changes in version control and maintain a full audit trail of updates.
+- Production deployments require approval and are monitored for errors with New Relic.
+
+## Business Continuity
+
+- Regular backups are performed and stored securely.
+- System uptime is monitored 24/7 with New Relic.
+- We have recovery procedures in place in case of critical outages.
+
+## Data Handling
+
+- Users can request access to or deletion of their data at any time, see our [Exclusion page](/legal/exclusion).
+- We follow data minimization principles and only collect what is necessary.
+- Our platform is built with GDPR best practices in mind, see our [Privacy page](/legal/privacy).
+
+## Future Plans
+
+- We are actively working toward SOC 2 Type I compliance.
+- If your organization requires formal attestation, please contact us — we’re happy to share more details or partner on a compliance roadmap.
